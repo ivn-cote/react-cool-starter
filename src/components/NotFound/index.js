@@ -7,7 +7,7 @@ import styles from './styles.scss';
 
 export default () => (
   <div className={styles.NotFound}>
-    <Helmet title="Oops" />
+    <Helmet title="404" />
     <p>Oops, Page was not found!</p>
   </div>
 );
