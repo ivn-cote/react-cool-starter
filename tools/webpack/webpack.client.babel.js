@@ -208,6 +208,10 @@ module.exports = {
     moduleExtensions: ['-loader'],
   },
   resolve: {
+    alias: {
+      appComponents: path.resolve(__dirname, '../../src/components/'),
+      appContainers: path.resolve(__dirname, '../../src/containers/'),
+    },
     modules: ['src', 'node_modules'],
     descriptionFiles: ['package.json'],
     moduleExtensions: ['-loader'],
