@@ -24,8 +24,6 @@ const getPlugins = () => {
     }),
     new webpack.LoaderOptionsPlugin({
       options: {
-        // Javascript lint
-        eslint: { failOnError: eslint },
         context: '/',   // Required for the sourceMap of css/sass loader
         debug: isDev,
         minimize: !isDev,
@@ -114,12 +112,12 @@ module.exports = {
   },
   module: {
     rules: [
-      {
+      eslint ? {
         test: /\.jsx?$/,
         enforce: 'pre',
         exclude: /node_modules/,
         loader: 'eslint',
-      },
+      } : {},
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
