@@ -1,11 +1,11 @@
 /* @flow */
 
-import { fetchUsersIfNeeded } from 'appContainers/Home/action';
-import { fetchUserIfNeeded } from 'appContainers/UserInfo/action';
-import HomePage from 'appContainers/Home';
-import UserInfoPage from 'appContainers/UserInfo';
-import NotFoundPage from 'appComponents/NotFound';
 import type { Dispatch } from './types';
+import { fetchUsersIfNeeded } from './containers/Home/action';
+import { fetchUserIfNeeded } from './containers/UserInfo/action';
+import HomePage from './containers/Home';
+import UserInfoPage from './containers/UserInfo';
+import NotFoundPage from './components/NotFound';
 
 export const appRoutes = {
   main: '/',

@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import type { Connector } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import UserCard from 'appComponents/UserCard';
 import * as action from './action';
 import type { UserInfo as UserInfoType, Dispatch, Reducer } from '../../types';
+import UserCard from '../../components/UserCard';
 import styles from './styles.scss';
 
 type Props = {

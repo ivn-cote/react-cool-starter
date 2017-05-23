@@ -6,10 +6,9 @@ import { connect } from 'react-redux';
 import type { Connector } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import UserList from 'appComponents/UserList';
 import * as action from './action';
 import type { Home as HomeType, Dispatch, Reducer } from '../../types';
-
+import UserList from '../../components/UserList';
 import styles from './styles.scss';
 
 type Props = {
