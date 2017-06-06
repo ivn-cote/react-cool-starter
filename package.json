@@ -37,73 +37,23 @@
   "homepage": "https://github.com/wellyshen/react-cool-starter",
   "scripts": {
     "scaffold:component": "yo not-bad-react-component",
-    "start": "better-npm-run start",
+    "start": "NODE_ENV=development nodemon ./index.js --exec babel-node",
     "start:production": "npm run build && npm run start:prod",
-    "start:prod": "better-npm-run start:prod",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "npm run clean:client && better-npm-run build:client",
-    "build:server": "npm run clean:server && better-npm-run build:server",
+    "start:prod": "NODE_ENV=production node ./index.js",
+    "build": "NODE_ENV=production npm run clean:all && npm run build:client && npm run build:server",
+    "build:client": "webpack --progress --hide-modules --config ./tools/webpack/webpack.client.babel.js",
+    "build:server": "webpack --progress --hide-modules --config ./tools/webpack/webpack.server.babel.js",
     "lint": "npm run lint:js && npm run lint:style",
-    "lint:js": "better-npm-run lint:js",
-    "lint:style": "better-npm-run lint:style",
-    "flow": "better-npm-run flow",
-    "test": "better-npm-run test",
+    "lint:js": "eslint ./src ./tools ./index.js",
+    "lint:style": "stylelint \"./src/**/*.scss\" --syntax scss",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "test": "NODE_ENV=test jest --coverage --config ./tools/jest/config.json",
     "test:watch": "npm run test --watch",
     "clean:all": "npm run clean:client && npm run clean:server && npm run clean:test",
-    "clean:client": "better-npm-run clean:client",
-    "clean:server": "better-npm-run clean:server",
-    "clean:test": "better-npm-run clean:test",
-    "coveralls": "better-npm-run coveralls && npm run clean:test"
-  },
-  "betterScripts": {
-    "start": {
-      "command": "nodemon ./index.js --exec babel-node",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "start:prod": {
-      "command": "node ./index.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:client": {
-      "command": "webpack --progress --hide-modules --config ./tools/webpack/webpack.client.babel.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:server": {
-      "command": "webpack --progress --hide-modules --config ./tools/webpack/webpack.server.babel.js"
-    },
-    "lint:js": {
-      "command": "eslint ./src ./tools ./index.js"
-    },
-    "lint:style": {
-      "command": "stylelint \"./src/**/*.scss\" --syntax scss"
-    },
-    "flow": {
-      "command": "flow; test $? -eq 0 -o $? -eq 2"
-    },
-    "test": {
-      "command": "jest --coverage --config ./tools/jest/config.json",
-      "env": {
-        "NODE_ENV": "test"
-      }
-    },
-    "clean:client": {
-      "command": "rimraf ./build/public/assets"
-    },
-    "clean:server": {
-      "command": "rimraf ./build/server.js ./build/server.js.map"
-    },
-    "clean:test": {
-      "command": "rimraf ./coverage"
-    },
-    "coveralls": {
-      "command": "cat ./coverage/lcov.info | coveralls"
-    }
+    "clean:client": "rimraf ./build/public/assets",
+    "clean:server": "rimraf ./build/server.js ./build/server.js.map",
+    "clean:test": "rimraf ./coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls && npm run clean:test"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -145,7 +95,6 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "better-npm-run": "0.0.15",
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.1",
     "enzyme": "^2.8.2",
