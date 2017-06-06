@@ -1,17 +1,16 @@
-/* @flow */
-
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
 
-import config from '../../config';
 import routes from '../../routes';
 // Import your global styles here
 import '../../theme/normalize.css';
 import styles from './styles.scss';
 
-export default () => {
+const App = ({ appConfig }) => {
   // Use it when sub routes are added to any route it'll work
   const routeWithSubRoutes = route => (
     <Route
@@ -27,10 +26,10 @@ export default () => {
 
   return (
     <div className={styles.App}>
-      <Helmet {...config.app} />
+      <Helmet {...appConfig} />
       <div className={styles.header}>
         <img src={require('./assets/logo.svg')} alt="Logo" role="presentation" />
-        <h1>{config.app.title}</h1>
+        <h1>{appConfig.title}</h1>
       </div>
       <hr />
       <Switch>
@@ -39,3 +38,15 @@ export default () => {
     </div>
   );
 };
+
+App.propTypes = {
+  appConfig: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+};
+
+const connector = connect(
+  ({ config }) => ({ appConfig: config }),
+);
+
+export default connector(App);

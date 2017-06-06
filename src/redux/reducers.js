@@ -7,6 +7,7 @@ import home from '../containers/Home/reducer';
 import userInfo from '../containers/UserInfo/reducer';
 
 export default combineReducers({
+  config: data => data || {},
   home,
   userInfo,
   router,

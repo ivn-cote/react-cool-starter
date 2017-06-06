@@ -13,14 +13,17 @@ import { StaticRouter } from 'react-router-dom';
 import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import chalk from 'chalk';
+import config from 'config';
 
 import createHistory from 'history/createMemoryHistory';
 import configureStore from './redux/store';
 import Html from './utils/Html';
 import App from './containers/App';
 import routes from './routes';
-import { port, host } from './config';
 
+const port = config.get('port');
+const host = config.get('host');
+const appConfig = config.get('app');
 const app = express();
 
 // Using helmet to secure Express with various HTTP headers
@@ -57,7 +60,7 @@ app.get('*', (req, res) => {
   if (__DEV__) webpackIsomorphicTools.refresh();
 
   const history = createHistory();
-  const store = configureStore(history);
+  const store = configureStore(history, { config: appConfig });
   const renderHtml = (store, htmlContent) => {  // eslint-disable-line no-shadow
     const html = renderToStaticMarkup(<Html store={store} htmlContent={htmlContent} />);
 
