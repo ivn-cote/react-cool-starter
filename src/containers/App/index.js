@@ -1,6 +1,6 @@
-/* @flow */
-
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
@@ -10,19 +10,7 @@ import routes from '../../routes';
 import '../../theme/normalize.css';
 import styles from './styles.scss';
 
-const appConfig = {
-  htmlAttributes: { lang: 'en' },
-  title: 'React Cool Starter',
-  titleTemplate: 'React Cool Starter - %s',
-  meta: [
-    {
-      name: 'description',
-      content: 'The best react universal starter boilerplate in the world.',
-    },
-  ],
-};
-
-export default () => {
+const App = ({ appConfig }) => {
   // Use it when sub routes are added to any route it'll work
   const routeWithSubRoutes = route => (
     <Route
@@ -50,3 +38,15 @@ export default () => {
     </div>
   );
 };
+
+App.propTypes = {
+  appConfig: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+};
+
+const connector = connect(
+  ({ config }) => ({ appConfig: config }),
+);
+
+export default connector(App);
