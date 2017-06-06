@@ -8,7 +8,7 @@ import {
   USER_FAILURE,
   USER_SUCCESS,
 } from '../action';
-import { UserInfo } from '../index';
+import { UserInfo } from '../UserInfo';
 
 describe('<UserInfo />', () => {
   const tree = (props, actions) => renderer.create(

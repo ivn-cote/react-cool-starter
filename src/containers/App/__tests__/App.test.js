@@ -11,7 +11,10 @@ describe('<App />', () => {
       default: () => {},
       subscribe: () => {},
       dispatch: () => {},
-      getState: () => ({ home: () => {} }),
+      getState: () => ({
+        config: { title: 'test' },
+        home: () => {},
+      }),
     };
 
     const tree = renderer.create(

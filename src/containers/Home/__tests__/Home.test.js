@@ -9,7 +9,7 @@ import {
   USERS_FAILURE,
   USERS_SUCCESS,
 } from '../action';
-import { Home } from '../index';
+import { Home } from '../Home';
 
 describe('<Home />', () => {
   const tree = (props, actions) => renderer.create(
