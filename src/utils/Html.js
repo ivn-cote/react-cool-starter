@@ -52,7 +52,7 @@ const Html = ({ store, htmlContent }: Props) => {
                 // $FlowFixMe: It's not an issue
                 require('../containers/App/styles.scss')._style +
                 // $FlowFixMe: It's not an issue
-                require('../containers/Home/Home.scss')._style
+                require('../containers/Home/Home.scss')._style,
               }}
             />
             : null
