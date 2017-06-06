@@ -59,14 +59,12 @@
     "start": {
       "command": "nodemon ./index.js --exec babel-node",
       "env": {
-        "NODE_PATH": "./src",
         "NODE_ENV": "development"
       }
     },
     "start:prod": {
       "command": "node ./index.js",
       "env": {
-        "NODE_PATH": "./src",
         "NODE_ENV": "production"
       }
     },
