@@ -29,7 +29,10 @@
     "unit testing",
     "performance optimizing"
   ],
-  "author": "WellyShen <hivoid19@gmail.com> (https://github.com/wellyshen)",
+  "contributors": [
+    "WellyShen <hivoid19@gmail.com> (https://github.com/wellyshen)",
+    "Ivan Kotov <kotovivan@gmail.com> (https://github.com/ivn-cote)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wellyshen/react-cool-starter/issues"
@@ -40,8 +43,8 @@
     "start": "npm run build && npm run start:production",
     "start:dev": "cross-env NODE_ENV=development nodemon ./index.js --exec babel-node",
     "start:production": "cross-env NODE_ENV=production node ./index.js",
-    "build": "cross-env NODE_ENV=production npm run clean:all && npm run build:client && npm run build:server",
-    "build:client": "webpack --progress --hide-modules --config ./tools/webpack/webpack.client.babel.js",
+    "build": "npm run clean && npm run build:client && npm run build:server",
+    "build:client": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./tools/webpack/webpack.client.babel.js",
     "build:server": "webpack --progress --hide-modules --config ./tools/webpack/webpack.server.babel.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint ./src ./tools ./index.js",
