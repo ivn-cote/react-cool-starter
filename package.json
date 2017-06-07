@@ -1,7 +1,7 @@
 {
-  "name": "react-cool-starter",
-  "version": "2.2.0",
-  "description": "A starter boilerplate for an universal web application with the best development experience and best practices.",
+  "name": "not-bad-react-starter",
+  "version": "1.0.0",
+  "description": "The starter kit providing an example of the isomorphic web application. Best practices. Very opinionated choice of stack. Fork of cool-react-starter.",
   "main": "index.js",
   "engines": {
     "node": ">=5.0 <8",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wellyshen/react-cool-starter"
+    "url": "https://github.com/not-bad-react/not-bad-react-starter"
   },
   "keywords": [
     "starter",
@@ -35,9 +35,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wellyshen/react-cool-starter/issues"
+    "url": "https://github.com/not-bad-react/not-bad-react-starter/issues"
   },
-  "homepage": "https://github.com/wellyshen/react-cool-starter",
+  "homepage": "https://github.com/not-bad-react/not-bad-react-starter",
   "scripts": {
     "scaffold:component": "yo not-bad-react-component",
     "start": "npm run build && npm run start:production",

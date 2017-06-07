@@ -3,12 +3,12 @@ module.exports = {
   port: process.env.PORT || 3000,
   app: {
     htmlAttributes: { lang: 'en' },
-    title: 'React Cool Starter',
-    titleTemplate: 'React Cool Starter - %s',
+    title: 'Not Bad React Starter',
+    titleTemplate: 'Not Bad React Starter - %s',
     meta: [
       {
         name: 'description',
-        content: 'The best react universal starter boilerplate in the world.',
+        content: 'The best not bad React boilerplate in the world.',
       },
     ],
   },
