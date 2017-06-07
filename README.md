@@ -1,6 +1,6 @@
 # Not Bad React Starter
 
-This repository consist of modern technical stack for a frontend tier. Combination of technologies present here address your need in reliable scalable isomorphic application based on Javascript. Server-side part is hosted on Express, SPA part is bundled with Webpack.
+This repository consists of a modern technical stack for a frontend tier. A combination of the technologies presented here addresses your need in a reliable scalable isomorphic application based on Javascript. Server-side part is hosted on Express, SPA part is bundled with Webpack.
 
 This project is a fork of WellyShen's [React Cool Starter](https://github.com/wellyshen/react-cool-starter). Main ideas behind the separation are: simplification, migration for another solutions, and preparation for real-life CI/CD.
 
