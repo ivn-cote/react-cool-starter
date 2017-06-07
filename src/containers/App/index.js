@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
-
+import 'normalize.css';
 import routes from '../../routes';
+
 // Import your global styles here
-import '../../theme/normalize.css';
 import styles from './styles.scss';
 
 const App = ({ appConfig }) => {
