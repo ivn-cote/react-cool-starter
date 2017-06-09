@@ -3,12 +3,9 @@ import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 import { StaticRouter } from 'react-router-dom';
 
-import {
-  USER_REQUESTING,
-  USER_FAILURE,
-  USER_SUCCESS,
-} from '../action';
 import { UserInfo } from '../UserInfo';
+
+jest.mock('../../../components/UserCard', () => 'UserCard');
 
 describe('<UserInfo />', () => {
   const tree = (props, actions) => renderer.create(
@@ -34,7 +31,7 @@ describe('<UserInfo />', () => {
     expect(mockAction).toHaveBeenCalled();
   });
 
-  test('renders the loading status if data invalid', () => {
+  test('renders nothing if no data', () => {
     const props = {
       userInfo: {},
       match: { params: { id: 1 } },
@@ -44,9 +41,9 @@ describe('<UserInfo />', () => {
     expect(tree(props, actions)).toMatchSnapshot();
   });
 
-  test('renders the loading status if requesting data', () => {
+  test('renders the loading status while requesting data', () => {
     const props = {
-      userInfo: { 1: { readyStatus: USER_REQUESTING } },
+      userInfo: { 1: { loading: true } },
       match: { params: { id: 1 } },
     };
     const actions = { fetchUserIfNeeded: () => {} };
@@ -56,7 +53,7 @@ describe('<UserInfo />', () => {
 
   test('renders an error if loading failed', () => {
     const props = {
-      userInfo: { 1: { readyStatus: USER_FAILURE } },
+      userInfo: { 1: { err: 'some error' } },
       match: { params: { id: 1 } },
     };
     const actions = { fetchUserIfNeeded: () => {} };
@@ -68,7 +65,6 @@ describe('<UserInfo />', () => {
     const props = {
       userInfo: {
         1: {
-          readyStatus: USER_SUCCESS,
           info: {
             name: 'Welly',
             phone: '007',

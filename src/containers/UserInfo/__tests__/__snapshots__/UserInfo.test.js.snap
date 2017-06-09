@@ -10,6 +10,12 @@ exports[`<UserInfo /> renders an error if loading failed 1`] = `
 </div>
 `;
 
+exports[`<UserInfo /> renders nothing if no data 1`] = `
+<div
+  className={undefined}
+/>
+`;
+
 exports[`<UserInfo /> renders the <UserCard /> if loading was successful 1`] = `
 <div
   className={undefined}
@@ -53,6 +59,16 @@ exports[`<UserInfo /> renders the loading status if data invalid 1`] = `
 `;
 
 exports[`<UserInfo /> renders the loading status if requesting data 1`] = `
+<div
+  className={undefined}
+>
+  <p>
+    Loading...
+  </p>
+</div>
+`;
+
+exports[`<UserInfo /> renders the loading status while requesting data 1`] = `
 <div
   className={undefined}
 >

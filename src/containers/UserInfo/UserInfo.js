@@ -35,17 +35,17 @@ export class UserInfo extends PureComponent {
 
   renderUserCard = () => {
     const { userInfo, match: { params } } = this.props;
-    const userInfoById = userInfo[params.id];
+    const { loading, err, info } = userInfo[params.id] || {};
 
-    if (!userInfoById || userInfoById.readyStatus === action.USER_REQUESTING) {
+    if (loading) {
       return <p>Loading...</p>;
     }
 
-    if (userInfoById.readyStatus === action.USER_FAILURE) {
+    if (err) {
       return <p>Oops, Failed to load info!</p>;
     }
 
-    return <UserCard info={userInfoById.info} />;
+    return !!info && <UserCard info={info} />;
   }
 
   render() {
