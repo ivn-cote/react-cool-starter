@@ -35,16 +35,15 @@ export class Home extends PureComponent {
   renderUserList = () => {
     const { home } = this.props;
 
-    if (!home.readyStatus || home.readyStatus === action.USERS_INVALID ||
-      home.readyStatus === action.USERS_REQUESTING) {
+    if (home.loading) {
       return <p>Loading...</p>;
     }
 
-    if (home.readyStatus === action.USERS_FAILURE) {
+    if (home.err) {
       return <p>Oops, Failed to load list!</p>;
     }
 
-    return <UserList list={home.list} />;
+    return !!home.list && <UserList list={home.list} />;
   }
 
   render() {

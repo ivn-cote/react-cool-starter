@@ -10,6 +10,12 @@ exports[`<Home /> renders an error if loading failed 1`] = `
 </div>
 `;
 
+exports[`<Home /> renders nothing if no data 1`] = `
+<div
+  className={undefined}
+/>
+`;
+
 exports[`<Home /> renders the <UserList /> if loading was successful 1`] = `
 <div
   className={undefined}
@@ -24,16 +30,6 @@ exports[`<Home /> renders the <UserList /> if loading was successful 1`] = `
       ]
     }
   />
-</div>
-`;
-
-exports[`<Home /> renders the loading status if data invalid 1`] = `
-<div
-  className={undefined}
->
-  <p>
-    Loading...
-  </p>
 </div>
 `;
 
