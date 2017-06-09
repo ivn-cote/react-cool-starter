@@ -9,7 +9,7 @@ import NotFoundPage from './components/NotFound';
 
 export const appRoutes = {
   main: '/',
-  userInfo: 'user-info/:id',
+  userInfo: '/user-info/:id',
 };
 
 export default [

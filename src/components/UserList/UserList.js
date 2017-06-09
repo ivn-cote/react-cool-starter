@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { appRoutes } from '../../routes';
 
 import styles from './UserList.scss';
 
@@ -11,7 +12,7 @@ const UserList = ({ list }: Props) => (
     <ul>
       {list.map(user => (
         <li key={user.id}>
-          <Link to={`/UserInfo/${user.id}`}>{user.name}</Link>
+          <Link to={appRoutes.userInfo.replace(':id', user.id)}>{user.name}</Link>
         </li>
       ))}
     </ul>
