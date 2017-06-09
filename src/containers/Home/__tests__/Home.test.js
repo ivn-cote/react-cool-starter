@@ -11,6 +11,8 @@ import {
 } from '../action';
 import { Home } from '../Home';
 
+jest.mock('../../../components/UserList', () => 'UserList');
+
 describe('<Home />', () => {
   const tree = (props, actions) => renderer.create(
     <StaticRouter location={''} context={{}}>
