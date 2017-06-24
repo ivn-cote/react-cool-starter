@@ -11,14 +11,15 @@ export const USERS_REQUESTING = 'USERS_REQUESTING';
 export const USERS_FAILURE = 'USERS_FAILURE';
 export const USERS_SUCCESS = 'USERS_SUCCESS';
 
-export const API_URL = 'https://jsonplaceholder.typicode.com/users';
+export const API_URL = 'users/';
 
 // Export this for unit testing more easily
 export const fetchUsers = (axios: any, URL: string = API_URL): ThunkAction =>
-  (dispatch: Dispatch) => {
+  (dispatch: Dispatch, getStore) => {
     dispatch({ type: USERS_REQUESTING });
+    const { backendBaseURL, backendBasePath } = getStore().config;
 
-    return axios.get(URL)
+    return axios.get(backendBaseURL + backendBasePath + URL)
       .then((res) => {
         dispatch({ type: USERS_SUCCESS, data: res.data });
       })
