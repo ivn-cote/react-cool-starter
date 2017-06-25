@@ -20,51 +20,16 @@ exports[`<UserInfo /> renders the <UserCard /> if loading was successful 1`] = `
 <div
   className={undefined}
 >
-  <div
-    className={undefined}
-  >
-    <h4>
-      User Card
-    </h4>
-    <ul>
-      <li>
-        Name: 
-        Welly
-      </li>
-      <li>
-        Phone: 
-        007
-      </li>
-      <li>
-        Email: 
-        test@gmail.com
-      </li>
-      <li>
-        Website: 
-        www.test.com
-      </li>
-    </ul>
-  </div>
-</div>
-`;
-
-exports[`<UserInfo /> renders the loading status if data invalid 1`] = `
-<div
-  className={undefined}
->
-  <p>
-    Loading...
-  </p>
-</div>
-`;
-
-exports[`<UserInfo /> renders the loading status if requesting data 1`] = `
-<div
-  className={undefined}
->
-  <p>
-    Loading...
-  </p>
+  <UserCard
+    info={
+      Object {
+        "email": "test@gmail.com",
+        "name": "Welly",
+        "phone": "007",
+        "website": "www.test.com",
+      }
+    }
+  />
 </div>
 `;
 
