@@ -57,7 +57,7 @@ if (__DEV__) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-__DEV__ && app.get(`/${mockPath}/:endpoint/:search`, (req, res) => {
+__DEV__ && app.get(`/${mockPath}/:endpoint/:search?`, (req, res) => {
   const { endpoint, search } = req.params;
   const mockFile = ({
     users: ['users', 'user'],
