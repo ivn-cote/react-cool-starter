@@ -18,7 +18,6 @@ export const fetchUser = (userId: string, axios: any, URL: string = API_URL): Th
   (dispatch: Dispatch, getStore) => {
     dispatch({ type: USER_REQUESTING, userId });
     const { backendBaseURL, backendBasePath } = getStore().config;
-
     return axios.get(backendBaseURL + backendBasePath + URL + userId)
       .then((res) => {
         dispatch({ type: USER_SUCCESS, userId, data: res.data });
