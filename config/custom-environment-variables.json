@@ -1,0 +1,8 @@
+{
+    "app": {
+        "useMocks": {
+            "__name": "USE_MOCKS",
+            "__format": "json"
+        }
+    }
+}
