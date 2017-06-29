@@ -1,7 +1,5 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import axios from 'axios';
-import httpAdapter from 'axios/lib/adapters/http';
 import nock from 'nock';
 import config from 'config';
 
@@ -14,7 +12,6 @@ import {
 
 const appConfig = config.get('app');
 const { backendBaseURL } = appConfig;
-axios.defaults.adapter = httpAdapter;
 
 const mockStore = configureMockStore([thunk]);
 
@@ -42,7 +39,7 @@ describe('fetch user data', () => {
     ];
     const store = mockStore({ info: null, config: {} });
 
-    return store.dispatch(fetchUser(userId, axios, '/none'))
+    return store.dispatch(fetchUser(userId))
       .then(() => expect(store.getActions()).toEqual(expectedActions));
   });
 
@@ -58,7 +55,7 @@ describe('fetch user data', () => {
     ];
     const store = mockStore({ err: null, config: {} });
 
-    return store.dispatch(fetchUser(userId, axios, '/none'))
+    return store.dispatch(fetchUser(userId))
       .then(() => { expect(store.getActions()).toEqual(expectedActions); });
   });
 });

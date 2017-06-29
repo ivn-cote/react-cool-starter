@@ -1,4 +1,5 @@
 /* @flow */
+import requestAPI from '../../communication';
 
 import type {
   Dispatch,
@@ -14,12 +15,11 @@ export const USERS_SUCCESS = 'USERS_SUCCESS';
 export const API_URL = 'users/';
 
 // Export this for unit testing more easily
-export const fetchUsers = (axios: any, endpointPath: string = API_URL): ThunkAction =>
+export const fetchUsers = (endpointPath: string = API_URL): ThunkAction =>
   (dispatch: Dispatch, getStore) => {
     dispatch({ type: USERS_REQUESTING });
-    const { backendBaseURL, backendBasePath } = getStore().config;
 
-    return axios.get(backendBaseURL + backendBasePath + endpointPath)
+    return requestAPI(endpointPath, getStore().config)
       .then((res) => {
         dispatch({ type: USERS_SUCCESS, data: res.data });
       })
@@ -44,11 +44,11 @@ const shouldFetchUsers = (state: Reducer): boolean => {
 
 /* istanbul ignore next */
 export const fetchUsersIfNeeded = (): ThunkAction =>
-  (dispatch: Dispatch, getState: GetState, axios: any) => {
+  (dispatch: Dispatch, getState: GetState) => {
     /* istanbul ignore next */
     if (shouldFetchUsers(getState())) {
       /* istanbul ignore next */
-      return dispatch(fetchUsers(axios));
+      return dispatch(fetchUsers());
     }
 
     /* istanbul ignore next */
