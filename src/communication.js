@@ -8,10 +8,14 @@ const requestAPI = (endpoint, config) => {
   const {
     backendBaseURL,
     backendBasePath,
+    useMocks,
+    mockPath,
   } = config;
 
-
-  return axios.get(backendBaseURL + backendBasePath + endpoint);
+  const hostname = useMocks
+    ? `http://localhost:3000/${mockPath}/`
+    : backendBaseURL + backendBasePath;
+  return axios.get(hostname + endpoint);
 };
 
 export default requestAPI;

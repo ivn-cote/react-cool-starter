@@ -24,8 +24,8 @@ import routes from './routes';
 
 const port = config.get('port');
 const host = config.get('host');
-const mockPath = config.get('mockPath');
 const appConfig = config.get('app');
+const { mockPath } = appConfig;
 const app = express();
 
 // Using helmet to secure Express with various HTTP headers
