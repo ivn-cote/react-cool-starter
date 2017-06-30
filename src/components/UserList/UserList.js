@@ -4,7 +4,7 @@ import { appRoutes } from '../../routes';
 
 import styles from './UserList.scss';
 
-type Props = { list: Object };
+type Props = { list: Array };
 
 const UserList = ({ list }: Props) => (
   <div className={styles.UserList}>
@@ -20,10 +20,10 @@ const UserList = ({ list }: Props) => (
 );
 
 UserList.defaultProps = {
-  list: {
+  list: [{
     id: '',
     name: '',
-  },
+  }],
 };
 
 export default UserList;

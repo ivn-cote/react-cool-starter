@@ -1,6 +1,7 @@
 /* @flow */
 
 import path from 'path';
+import fs from 'fs';
 import morgan from 'morgan';
 import express from 'express';
 import compression from 'compression';
@@ -24,6 +25,7 @@ import routes from './routes';
 const port = config.get('port');
 const host = config.get('host');
 const appConfig = config.get('app');
+const { mockPath } = appConfig;
 const app = express();
 
 // Using helmet to secure Express with various HTTP headers
@@ -55,7 +57,25 @@ if (__DEV__) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-// Register server-side rendering middleware
+__DEV__ && app.get(`/${mockPath}/:endpoint/:search?`, (req, res) => {
+  const { endpoint, search } = req.params;
+  const mockFile = ({
+    users: ['users', 'user'],
+  })[endpoint][search ? 1 : 0];
+
+  fs.readFile(`${__dirname}/mocks/${mockFile}.json`, 'utf8', (err, data) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      try {
+        res.json(JSON.parse(data));
+      } catch (fatal) {
+        res.sendStatus(500);
+      }
+    }
+  });
+});
+
 app.get('*', (req, res) => {
   if (__DEV__) webpackIsomorphicTools.refresh();
 

@@ -1,4 +1,5 @@
 /* @flow */
+import requestAPI from '../../communication';
 
 import type {
   Dispatch,
@@ -11,14 +12,13 @@ export const USER_REQUESTING = 'USER_REQUESTING';
 export const USER_FAILURE = 'USER_FAILURE';
 export const USER_SUCCESS = 'USER_SUCCESS';
 
-export const API_URL = 'https://jsonplaceholder.typicode.com/users';
+export const API_URL = 'users/';
 
 // Export this for unit testing more easily
-export const fetchUser = (userId: string, axios: any, URL: string = API_URL): ThunkAction =>
-  (dispatch: Dispatch) => {
+export const fetchUser = (userId: string, endpointPath: string = API_URL): ThunkAction =>
+  (dispatch: Dispatch, getStore) => {
     dispatch({ type: USER_REQUESTING, userId });
-
-    return axios.get(`${URL}/${userId}`)
+    return requestAPI(endpointPath + userId, getStore().config)
       .then((res) => {
         dispatch({ type: USER_SUCCESS, userId, data: res.data });
       })
@@ -44,11 +44,11 @@ const shouldFetchUser = (state: Reducer, userId: string): boolean => {
 
 /* istanbul ignore next */
 export const fetchUserIfNeeded = (userId: string): ThunkAction =>
-  (dispatch: Dispatch, getState: GetState, axios: any) => {
+  (dispatch: Dispatch, getState: GetState) => {
     /* istanbul ignore next */
     if (shouldFetchUser(getState(), userId)) {
       /* istanbul ignore next */
-      return dispatch(fetchUser(userId, axios));
+      return dispatch(fetchUser(userId));
     }
 
     /* istanbul ignore next */

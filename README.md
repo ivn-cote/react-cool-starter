@@ -56,11 +56,17 @@ npm run start
 ```
 It will trigger building the bundle and running a server.
 
-### Developement
+### Development
 Server with hot reloading:
 ```bash
 npm run build && npm run start:dev
 ```
+
+Development in offline mode:
+```bash
+USE_MOCKS=false npm run start:dev
+```
+If you prefer working with mocks only, set it in `config/default.js`.
 
 Run tests check:
 ```bash

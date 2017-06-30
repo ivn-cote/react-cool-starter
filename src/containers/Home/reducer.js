@@ -30,6 +30,7 @@ export default (state: State = initialState, action: Action): State => {
       return _.assign({}, state, {
         loading: false,
         list: action.data,
+        err: null,
       });
     default:
       return state;

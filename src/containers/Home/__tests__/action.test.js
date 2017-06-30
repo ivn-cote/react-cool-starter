@@ -1,8 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import axios from 'axios';
-import httpAdapter from 'axios/lib/adapters/http';
 import nock from 'nock';
+import config from 'config';
 
 import {
   fetchUsers,
@@ -11,10 +10,8 @@ import {
   USERS_SUCCESS,
 } from '../action';
 
-const host = 'http://localhost';
-
-axios.defaults.host = host;
-axios.defaults.adapter = httpAdapter;
+const appConfig = config.get('app');
+const { backendBaseURL } = appConfig;
 
 const mockStore = configureMockStore([thunk]);
 
@@ -25,32 +22,34 @@ describe('fetch users data', () => {
   afterEach(() => { nock.disableNetConnect(); });
 
   test('creates USERS_SUCCESS when fetching users has been done', () => {
-    nock(host)
-      .get('/test')
+    expect.assertions(1);
+    nock(backendBaseURL)
+      .get(/.*/)
       .reply(200, response);
 
     const expectedActions = [
       { type: USERS_REQUESTING },
       { type: USERS_SUCCESS, data: response },
     ];
-    const store = mockStore({ list: null });
+    const store = mockStore({ list: null, config: {} });
 
-    store.dispatch(fetchUsers(axios, `${host}/test`))
+    return store.dispatch(fetchUsers())
       .then(() => { expect(store.getActions()).toEqual(expectedActions); });
   });
 
   test('creates USERS_FAILURE when fail to fetch users', () => {
-    nock(host)
-      .get('/test')
+    expect.assertions(1);
+    nock(backendBaseURL)
+      .get(/.*/)
       .replyWithError(errorMessage);
 
     const expectedActions = [
       { type: USERS_REQUESTING },
       { type: USERS_FAILURE, err: new Error([errorMessage]) },
     ];
-    const store = mockStore({ err: null });
+    const store = mockStore({ err: null, config: {} });
 
-    store.dispatch(fetchUsers(axios, `${host}/test`))
+    return store.dispatch(fetchUsers())
       .then(() => { expect(store.getActions()).toEqual(expectedActions); });
   });
 });

@@ -3,6 +3,8 @@
     "index.js",
     "tools/webpack/",
     "!tools/webpack/webpack.server.babel.js",
+    "src/components/*",
+    "src/containers/*",
     "src/server.js",
     "src/utils/Html.js"
   ]
