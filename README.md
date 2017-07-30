@@ -64,7 +64,7 @@ npm run build && npm run start:dev
 
 Development in offline mode:
 ```bash
-USE_MOCKS=false npm run start:dev
+USE_MOCKS=true npm run start:dev
 ```
 If you prefer working with mocks only, set it in `config/default.js`.
 
