@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
@@ -45,8 +44,4 @@ App.propTypes = {
   }).isRequired,
 };
 
-const connector = connect(
-  ({ config }) => ({ appConfig: config }),
-);
-
-export default connector(App);
+export default App;

@@ -22,7 +22,7 @@ const renderApp = () => {
     <AppContainer>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <App />
+          <App appConfig={initialState.config} />
         </ConnectedRouter>
       </Provider>
     </AppContainer>,

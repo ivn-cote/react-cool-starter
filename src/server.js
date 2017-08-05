@@ -115,7 +115,7 @@ app.get('*', (req, res) => {
       const htmlContent = renderToString(
         <Provider store={store}>
           <StaticRouter location={req.url} context={routerContext}>
-            <App />
+            <App appConfig={appConfig} />
           </StaticRouter>
         </Provider>,
       );
