@@ -20,7 +20,7 @@ describe('<App />', () => {
     const tree = renderer.create(
       <Provider store={fakeStore}>
         <StaticRouter location={''} context={{}}>
-          <App />
+          <App appConfig={{ title: 'test' }} />
         </StaticRouter>
       </Provider>,
     ).toJSON();
